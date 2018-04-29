@@ -107,14 +107,17 @@ namespace BlockDemoDarkRiftPlugin
                 //Check it's a movement message
                 if (message != null && message.Tag == BlockTags.Movement)
                 {
+                    //Get a reference to the message reader
+                    DarkRiftReader reader = message.GetReader();
+                    
                     //Get the player in question
                     Player player;
                     lock (players)
                         player = players[e.Client];
-
-                    //Deserialize the new position
-                    Vec3 newPosition = message.Deserialize<Vec3>();
-                    Vec3 newRotation = message.Deserialize<Vec3>();
+                        
+                    //Deserialize the new position and Euler rotation
+                    Vec3 newPosition = reader.ReadSerializable<Vec3>();
+                    Vec3 newRotation = reader.ReadSerializable<Vec3>();
 
                     lock (player)
                     {
