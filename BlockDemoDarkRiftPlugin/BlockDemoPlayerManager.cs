@@ -115,7 +115,7 @@ namespace BlockDemoDarkRiftPlugin
                     lock (players)
                         player = players[e.Client];
                         
-                    //Deserialize the new position and Euler rotation
+                    //Deserialize the new position and euler rotation
                     Vec3 newPosition = reader.ReadSerializable<Vec3>();
                     Vec3 newRotation = reader.ReadSerializable<Vec3>();
 
